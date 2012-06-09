@@ -82,6 +82,25 @@
                     <xsl:if test="count(docblock/tag[@name != 'return' and @name != 'param' and @name != 'throws' and @name != 'throw']) > 0">
                         <table class="table table-bordered">
                             <xsl:apply-templates select="docblock/tag[@name != 'return' and @name != 'param' and @name != 'throws' and @name != 'throw']" mode="tabular" />
+                            <xsl:variable name="filePath" select="substring-before(../@path,'.php')"/>
+                            <xsl:variable name="filePathSource">
+                                <xsl:call-template name="createLink">
+                                    <xsl:with-param name="value" select="$filePath"/>
+                                </xsl:call-template>
+                            </xsl:variable>
+                            <xsl:if test="$filePath != ''">
+                                <tr>
+                                    <th>
+                                        Source
+                                    </th>
+                                    <td>
+                                        <a href="{$root}files/{$filePathSource}.html">
+                                            <i class="icon-file"></i>
+                                            <xsl:value-of select="../@path"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </xsl:if>
                         </table>
                     </xsl:if>
 

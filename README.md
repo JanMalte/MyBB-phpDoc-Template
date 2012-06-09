@@ -1,10 +1,12 @@
-Responsive
+MyBB-phpDoc-Template
 ==========
 
-`Responsive` is a responsive, frameless template making use of progressive
-enhancement to change the way you look at API Documentation.
+`MyBB-phpDoc-Template` is a responsive, frameless template for phpDoc2.
+It makes use of progressive enhancement to change the way you look at your API
+Documentation.
 
-Enough buzzwords? We might not be done yet!
+This template is based on the `Responsive` Template provided by phpDoc2.
+Therefor we share the same TODO list and bugs.
 
 TODO
 ----

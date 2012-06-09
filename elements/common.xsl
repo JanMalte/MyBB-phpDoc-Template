@@ -156,7 +156,6 @@
             <xsl:apply-templates select=".." mode="breadcrumb">
                 <xsl:with-param name="active" select="'false'" />
             </xsl:apply-templates>
-            <span class="divider">\</span>
         </xsl:if>
 
         <xsl:variable name="link">
@@ -168,6 +167,7 @@
         <li>
             <xsl:if test="$active = 'true'"><xsl:attribute name="class">active</xsl:attribute></xsl:if>
             <a href="{$root}{local-name()}s/{$link}.html"><xsl:value-of select="@name" /></a>
+            <span class="divider">\</span>
         </li>
     </xsl:template>
 

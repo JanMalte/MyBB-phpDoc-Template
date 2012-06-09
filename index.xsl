@@ -1,3 +1,4 @@
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output indent="yes" method="html" />
     <xsl:include href="layout.xsl" />
@@ -5,37 +6,51 @@
     <xsl:template match="/project" mode="contents">
 
         <div class="hero-unit">
-            <h1>
-                <xsl:value-of select="$title" disable-output-escaping="yes"/>
-                <xsl:if test="$title = ''">phpDocumentor</xsl:if>
-            </h1>
+            <div class="row">
+                <div class="span3">
+                    <img class="mainlogo" src="img/mybb-new-logo-2012.png" />
+                </div>
+                <div class="span6">
+                    <h1>
+                        <xsl:value-of select="$title" disable-output-escaping="yes"/>
+                        <xsl:if test="$title = ''">phpDocumentor</xsl:if>
+                    </h1>
+                </div>
+            </div>
             <h2>Documentation</h2>
         </div>
 
         <div class="row">
             <div class="span7">
                 <xsl:if test="count(/project/namespace[@name != 'default']) > 0">
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Namespaces</li>
-                        <xsl:apply-templates select="/project/namespace" mode="menu">
-                            <xsl:sort select="@full_name" />
-                        </xsl:apply-templates>
-                    </ul>
-                </div>
+                    <div class="well">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Namespaces</li>
+                            <xsl:apply-templates select="/project/namespace" mode="menu">
+                                <xsl:sort select="@full_name" />
+                            </xsl:apply-templates>
+                        </ul>
+                    </div>
                 </xsl:if>
 
                 <xsl:if test="count(/project/package[@name != '' and @name != 'default']) > 0">
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Packages</li>
-                        <xsl:apply-templates select="/project/package" mode="menu">
-                            <xsl:sort select="@name"/>
-                        </xsl:apply-templates>
-                    </ul>
-                </div>
+                    <div class="well">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Packages</li>
+                            <xsl:apply-templates select="/project/package" mode="menu">
+                                <xsl:sort select="@name"/>
+                            </xsl:apply-templates>
+                        </ul>
+                    </div>
                 </xsl:if>
 
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Files</li>
+                        <xsl:apply-templates select="/project/file" mode="files-overview" />
+                    </ul>
+                </div>
+                
             </div>
             <div class="span5">
                 <div class="well">

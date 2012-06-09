@@ -1,5 +1,6 @@
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:date="http://exslt.org/dates-and-times">
+                xmlns:date="http://exslt.org/dates-and-times">
     <xsl:output indent="yes" method="html" />
 
     <xsl:template name="string-replace-all">
@@ -12,7 +13,7 @@
                 <xsl:value-of select="$by" />
                 <xsl:call-template name="string-replace-all">
                     <xsl:with-param name="text"
-                        select="substring-after($text,$replace)" />
+                                    select="substring-after($text,$replace)" />
                     <xsl:with-param name="replace" select="$replace" />
                     <xsl:with-param name="by" select="$by" />
                 </xsl:call-template>
@@ -124,6 +125,17 @@
                                     <xsl:apply-templates select="/" mode="report-overview" />
                                 </ul>
                             </li>
+                            <li class="dropdown" id="files-menu">
+                                <a href="#files" class="dropdown-toggle" data-toggle="dropdown">
+                                    Files 
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <xsl:apply-templates select="/project/file" mode="files-overview">
+                                        <xsl:sort select="@path" />
+                                    </xsl:apply-templates>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!--<form class="navbar-search pull-right" onsubmit="$('.element:parent').show(); $('.element h1:not(:contains('+$('#search-query').val()+'))').parent().hide();return false;">-->
@@ -221,7 +233,18 @@
         <li>
             <a href="{$root}deprecated.html">
                 <i class="icon-stop"></i>&#160;Deprecated elements&#160;
-                <span class="label label-info"><xsl:value-of select="/project/deprecated/@count" /></span>
+                <span class="label label-info">
+                    <xsl:value-of select="/project/deprecated/@count" />
+                </span>
+            </a>
+        </li>
+    </xsl:template>
+    
+    <xsl:template match="/project/file" mode="files-overview">
+        <li>
+            <a href="{$root}files/{@generated-path}">
+                <i class="icon-file"></i>
+                <xsl:value-of select="@path" />
             </a>
         </li>
     </xsl:template>

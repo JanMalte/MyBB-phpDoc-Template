@@ -1,3 +1,4 @@
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output indent="yes" method="html" />
 
@@ -5,10 +6,10 @@
     <xsl:template match="/project/file/class|/project/file/interface" mode="sidebar">
         <!-- Visibility toggles -->
         <span class="btn-group visibility" data-toggle="buttons-checkbox">
-          <button class="btn public active" title="Show public elements">Public</button>
-          <button class="btn protected" title="Show protected elements">Protected</button>
-          <button class="btn private" title="Show private elements">Private</button>
-          <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+            <button class="btn public active" title="Show public elements">Public</button>
+            <button class="btn protected" title="Show protected elements">Protected</button>
+            <button class="btn private" title="Show private elements">Private</button>
+            <button class="btn inherited active" title="Show inherited elements">Inherited</button>
         </span>
 
         <div class="btn-group view pull-right" data-toggle="buttons-radio">
@@ -138,12 +139,22 @@
                 <a href="{$root}index.html"><i class="icon-custom icon-class"></i></a>
                 <span class="divider">\</span>
             </li>
-            <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">
+            <!-- Skip default namespace -->
+            <xsl:if test="$namespace != 'default'">
+                <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">
+                    <xsl:with-param name="active" select="false()"/>
+                </xsl:apply-templates>
+            </xsl:if>
+            <!-- build package breadcrumb -->
+            <xsl:variable name="fullPackage" select="@package"/>
+            <xsl:apply-templates select="//package[@full_name=$fullPackage]" mode="breadcrumb">
                 <xsl:with-param name="active" select="false()"/>
             </xsl:apply-templates>
+            <!-- class element -->
             <li class="active">
-                <span class="divider">\</span>
-                <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="name" /></a>
+                <a href="{$root}classes/{substring($link, 2)}.html">
+                    <xsl:value-of select="name" />
+                </a>
             </li>
         </ul>
 
@@ -160,6 +171,34 @@
                 <xsl:if test="count(docblock/tag) > 0">
                     <table class="table table-bordered">
                         <xsl:apply-templates select="docblock/tag" mode="tabular" />
+                        <xsl:if test="extends != ''">
+                            <xsl:variable name="parent" select="extends"/>
+                            <tr>
+                                <th>
+                                    Extends
+                                </th>
+                                <td>
+                                    <xsl:value-of select="$parent" />
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <tr>
+                            <th>
+                                Source
+                            </th>
+                            <td>
+                                <xsl:variable name="filePath" select="substring-before(../@path,'.php')"/>
+                                <xsl:variable name="filePathSource">
+                                    <xsl:call-template name="createLink">
+                                        <xsl:with-param name="value" select="$filePath"/>
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                <a href="{$root}files/{$filePathSource}.html">
+                                    <i class="icon-file"></i>
+                                    <xsl:value-of select="../@path"/>
+                                </a>
+                            </td>
+                        </tr>
                     </table>
                 </xsl:if>
 

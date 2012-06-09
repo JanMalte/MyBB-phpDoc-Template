@@ -17,7 +17,7 @@
 
         <xsl:variable name="name" select="."/>
         <pre>
-            <xsl:value-of select="$name"/>
+            <xsl:value-of select="$name"/> = <xsl:value-of select="$name/../value" />
             <xsl:text>&#160;</xsl:text>
             <xsl:apply-templates select="../docblock/tag[@name='var']" mode="signature">
                 <xsl:with-param name="exclude-link" select="$exclude-link"/>

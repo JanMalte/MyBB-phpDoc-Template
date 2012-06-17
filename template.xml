@@ -5,7 +5,7 @@
   <version>1.0.1</version>
   <copyright>Mike van Riel 2012</copyright>
   <description><![CDATA[
-      This is the 'MyBB-phpDoc-Template' look and feel for phpDocumentor.
+      This is the 'mybb-phpdoc' look and feel for phpDocumentor.
 
       This is a responsive template that is optimized to make the user's
       experience paramount.
@@ -20,20 +20,20 @@
   ]]></description>
   <transformations>
     <transformation query="copy" writer="FileIo" source="images" artifact="img"/>
-    <transformation query="copy" writer="FileIo" source="templates/MyBB-phpDoc-Template/img" artifact="img"/>
-    <transformation query="copy" writer="FileIo" source="templates/MyBB-phpDoc-Template/css" artifact="css"/>
+    <transformation query="copy" writer="FileIo" source="templates/mybb-phpdoc/img" artifact="img"/>
+    <transformation query="copy" writer="FileIo" source="templates/mybb-phpdoc/css" artifact="css"/>
     <transformation query="copy" writer="FileIo" source="js" artifact="js"/>
-    <transformation query="copy" writer="FileIo" source="templates/MyBB-phpDoc-Template/js" artifact="js"/>
+    <transformation query="copy" writer="FileIo" source="templates/mybb-phpdoc/js" artifact="js"/>
     <transformation query="copy" writer="FileIo" source="../data/syntax_highlighter" artifact="syntax_highlighter"/>
-    <transformation query="" writer="xsl" source="templates/MyBB-phpDoc-Template/index.xsl" artifact="index.html"/>
-    <transformation query="//namespace/@full_name" writer="xsl" source="templates/MyBB-phpDoc-Template/namespaces.xsl" artifact="namespaces/{$full_name}"/>
-    <transformation query="//package/@full_name" writer="xsl" source="templates/MyBB-phpDoc-Template/packages.xsl" artifact="packages/{$full_name}"/>
-    <transformation query="//class/full_name|//interface/full_name" writer="xsl" source="templates/MyBB-phpDoc-Template/class.xsl" artifact="classes/{$full_name}"/>
-    <transformation query="//project/file/@path" writer="xsl" source="templates/MyBB-phpDoc-Template/file.xsl" artifact="files/{$path}"/>
-    <transformation query="" writer="xsl" source="templates/MyBB-phpDoc-Template/reports/markers.xsl" artifact="markers.html"/>
-    <transformation query="" writer="xsl" source="templates/MyBB-phpDoc-Template/reports/errors.xsl" artifact="errors.html"/>
-    <transformation query="" writer="xsl" source="templates/MyBB-phpDoc-Template/reports/deprecated.xsl" artifact="deprecated.html"/>
-    <transformation query="" writer="xsl" source="templates/MyBB-phpDoc-Template/graphs/class.xsl" artifact="graph_class.html"/>
+    <transformation query="" writer="xsl" source="templates/mybb-phpdoc/index.xsl" artifact="index.html"/>
+    <transformation query="//namespace/@full_name" writer="xsl" source="templates/mybb-phpdoc/namespaces.xsl" artifact="namespaces/{$full_name}"/>
+    <transformation query="//package/@full_name" writer="xsl" source="templates/mybb-phpdoc/packages.xsl" artifact="packages/{$full_name}"/>
+    <transformation query="//class/full_name|//interface/full_name" writer="xsl" source="templates/mybb-phpdoc/class.xsl" artifact="classes/{$full_name}"/>
+    <transformation query="//project/file/@path" writer="xsl" source="templates/mybb-phpdoc/file.xsl" artifact="files/{$path}"/>
+    <transformation query="" writer="xsl" source="templates/mybb-phpdoc/reports/markers.xsl" artifact="markers.html"/>
+    <transformation query="" writer="xsl" source="templates/mybb-phpdoc/reports/errors.xsl" artifact="errors.html"/>
+    <transformation query="" writer="xsl" source="templates/mybb-phpdoc/reports/deprecated.xsl" artifact="deprecated.html"/>
+    <transformation query="" writer="xsl" source="templates/mybb-phpdoc/graphs/class.xsl" artifact="graph_class.html"/>
     <transformation query="" writer="Graph" source="Class" artifact="classes.svg" />
     <transformation query="" writer="sourcecode" source="" artifact=""/>
   </transformations>

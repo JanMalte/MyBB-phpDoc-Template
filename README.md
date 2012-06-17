@@ -1,7 +1,7 @@
 MyBB-phpDoc-Template
 ==========
 
-`MyBB-phpDoc-Template` is a responsive, frameless template for phpDoc2.
+`mybb-phpdoc` is a responsive, frameless template for phpDoc2.
 It makes use of progressive enhancement to change the way you look at your API
 Documentation.
 
